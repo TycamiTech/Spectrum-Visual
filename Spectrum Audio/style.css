@@ -1,0 +1,365 @@
+/* ========================================
+   SPECTRUM AUDIO VISUALIZER - STYLES
+   ======================================== */
+
+/* CSS Variables */
+:root {
+    --color-primary: #8b5cf6;
+    --color-secondary: #ec4899;
+    --color-accent: #ef4444;
+    --glow-intensity: 20px;
+    --transition-speed: 0.3s;
+}
+
+/* Font Families */
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ========================================
+   BACKGROUND GRADIENT
+   ======================================== */
+
+#background-gradient {
+    background: radial-gradient(ellipse at center,
+            rgba(30, 10, 50, 1) 0%,
+            rgba(10, 5, 20, 1) 50%,
+            rgba(0, 0, 0, 1) 100%);
+    animation: backgroundPulse 8s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+
+    0%,
+    100% {
+        background: radial-gradient(ellipse at center,
+                rgba(30, 10, 50, 0.8) 0%,
+                rgba(10, 5, 20, 0.9) 50%,
+                rgba(0, 0, 0, 1) 100%);
+    }
+
+    50% {
+        background: radial-gradient(ellipse at center,
+                rgba(50, 20, 80, 0.8) 0%,
+                rgba(20, 10, 40, 0.9) 50%,
+                rgba(0, 0, 0, 1) 100%);
+    }
+}
+
+/* Active state - more vibrant when visualizer is running */
+#background-gradient.active {
+    animation: backgroundPulseActive 4s ease-in-out infinite;
+}
+
+@keyframes backgroundPulseActive {
+
+    0%,
+    100% {
+        background: radial-gradient(ellipse at center,
+                rgba(40, 15, 70, 0.9) 0%,
+                rgba(15, 8, 30, 0.95) 50%,
+                rgba(0, 0, 0, 1) 100%);
+    }
+
+    50% {
+        background: radial-gradient(ellipse at center,
+                rgba(60, 25, 100, 0.9) 0%,
+                rgba(25, 12, 50, 0.95) 50%,
+                rgba(0, 0, 0, 1) 100%);
+    }
+}
+
+/* ========================================
+   CANVAS STYLES
+   ======================================== */
+
+#visualizer-canvas,
+#particle-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   UI OVERLAY
+   ======================================== */
+
+#ui-overlay {
+    transition: opacity 0.5s ease-out;
+}
+
+#ui-overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+#ui-overlay.minimized #title-container,
+#ui-overlay.minimized #start-btn,
+#ui-overlay.minimized #instructions {
+    opacity: 0;
+    transform: translateY(-20px);
+    pointer-events: none;
+}
+
+/* ========================================
+   BUTTON STYLES
+   ======================================== */
+
+#start-btn {
+    box-shadow:
+        0 0 20px rgba(139, 92, 246, 0.3),
+        0 0 40px rgba(236, 72, 153, 0.2),
+        0 0 60px rgba(239, 68, 68, 0.1);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#start-btn:hover {
+    box-shadow:
+        0 0 30px rgba(139, 92, 246, 0.5),
+        0 0 60px rgba(236, 72, 153, 0.4),
+        0 0 90px rgba(239, 68, 68, 0.3);
+}
+
+#start-btn:active {
+    box-shadow:
+        0 0 15px rgba(139, 92, 246, 0.4),
+        0 0 30px rgba(236, 72, 153, 0.3);
+}
+
+/* ========================================
+   ANIMATION KEYFRAMES
+   ======================================== */
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+@keyframes glow {
+
+    0%,
+    100% {
+        filter: drop-shadow(0 0 10px rgba(139, 92, 246, 0.5));
+    }
+
+    50% {
+        filter: drop-shadow(0 0 20px rgba(236, 72, 153, 0.8));
+    }
+}
+
+.animate-glow {
+    animation: glow 2s ease-in-out infinite;
+}
+
+/* ========================================
+   SCROLLBAR STYLES (Hidden)
+   ======================================== */
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+/* ========================================
+   SELECTION STYLES
+   ======================================== */
+
+::selection {
+    background: rgba(139, 92, 246, 0.5);
+    color: white;
+}
+
+/* ========================================
+   LOADING STATE
+   ======================================== */
+
+.loading-pulse {
+    animation: loadingPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.95);
+        opacity: 0.7;
+    }
+}
+
+/* ========================================
+   RESPONSIVE ADJUSTMENTS
+   ======================================== */
+
+@media (max-width: 768px) {
+    #title-container h1 {
+        font-size: 2.5rem;
+    }
+
+    #title-container p {
+        font-size: 0.875rem;
+    }
+
+    #start-btn {
+        padding: 0.75rem 2rem;
+    }
+
+    #start-btn span {
+        font-size: 1rem;
+    }
+
+    #audio-info {
+        left: 1rem;
+        top: 1rem;
+    }
+
+    #audio-info .bg-black\/40 {
+        padding: 0.5rem;
+    }
+
+    #bass-indicator {
+        left: 1rem;
+        bottom: 1rem;
+    }
+
+    #fps-counter {
+        right: 1rem;
+        top: 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    #title-container h1 {
+        font-size: 2rem;
+    }
+
+    #instructions {
+        font-size: 0.75rem;
+        padding: 0 1rem;
+        text-align: center;
+    }
+}
+
+/* ========================================
+   BASS REACTION ANIMATIONS
+   ======================================== */
+
+.bass-hit {
+    animation: bassHit 0.15s ease-out;
+}
+
+@keyframes bassHit {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.02);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* ========================================
+   VISUALIZER ACTIVE STATE
+   ======================================== */
+
+body.visualizer-active {
+    cursor: none;
+}
+
+body.visualizer-active #ui-overlay:hover {
+    cursor: default;
+}
+
+/* ========================================
+   NEON TEXT EFFECTS
+   ======================================== */
+
+.neon-text {
+    text-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+}
+
+/* ========================================
+   GLASS MORPHISM
+   ======================================== */
+
+.glass {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* ========================================
+   PARTICLE SIZE REFERENCE (rendered in JS)
+   ========================================
+   Particles are drawn on canvas via JavaScript:
+   - Small:  1-2px radius
+   - Medium: 2-4px radius  
+   - Large:  4-6px radius
+   ======================================== */
