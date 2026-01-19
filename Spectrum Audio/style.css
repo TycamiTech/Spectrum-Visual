@@ -1,0 +1,204 @@
+/* ========================================
+   SPECTRUM AUDIO VISUALIZER - STYLES
+   ======================================== */
+
+/* CSS Variables */
+:root {
+    --color-primary: #8b5cf6;
+    --color-secondary: #ec4899;
+    --color-accent: #ef4444;
+    --glow-intensity: 20px;
+    --transition-speed: 0.3s;
+}
+
+/* Font Families */
+.font-orbitron {
+    font-family: 'Orbitron', sans-serif;
+}
+
+.font-rajdhani {
+    font-family: 'Rajdhani', sans-serif;
+}
+
+/* ========================================
+   BASE STYLES
+   ======================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: #000;
+    font-family: 'Rajdhani', sans-serif;
+    color: white;
+    /* Ensure default text is white */
+}
+
+/* ========================================
+   BACKGROUND GRADIENT
+   ======================================== */
+
+#background-gradient {
+    background: radial-gradient(ellipse at center,
+            rgba(20, 5, 30, 1) 0%,
+            rgba(5, 2, 10, 1) 50%,
+            rgba(0, 0, 0, 1) 100%);
+}
+
+/* ========================================
+   CANVAS STYLES
+   ======================================== */
+
+#visualizer-canvas,
+#particle-canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================
+   UI ELEMENTS & DROPDOWNS
+   ======================================== */
+
+/* Force dark theme on selects/options for all browsers */
+select option {
+    background-color: #111827 !important;
+    /* bg-gray-900 */
+    color: white !important;
+}
+
+select:focus {
+    outline: none;
+    border-color: var(--color-primary);
+}
+
+/* ========================================
+   PLAYER CONTROLS
+   ======================================== */
+
+#play-btn {
+    box-shadow:
+        0 0 20px rgba(139, 92, 246, 0.3),
+        0 0 40px rgba(236, 72, 153, 0.2);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#play-btn:hover {
+    box-shadow:
+        0 0 30px rgba(139, 92, 246, 0.5),
+        0 0 60px rgba(236, 72, 153, 0.4),
+        0 0 90px rgba(239, 68, 68, 0.3);
+    transform: scale(1.1);
+}
+
+#play-btn:active {
+    transform: scale(0.95);
+    box-shadow: 0 0 15px rgba(139, 92, 246, 0.4);
+}
+
+#prev-btn,
+#next-btn {
+    transition: all 0.3s ease;
+    opacity: 0.7;
+}
+
+#prev-btn:hover,
+#next-btn:hover {
+    opacity: 1;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+    transform: scale(1.1);
+}
+
+/* ========================================
+   ANIMATION KEYFRAMES
+   ======================================== */
+
+@keyframes pulse-slow {
+
+    0%,
+    100% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.8;
+    }
+}
+
+.animate-pulse-slow {
+    animation: pulse-slow 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.animate-float {
+    animation: float 4s ease-in-out infinite;
+}
+
+/* ========================================
+   TEXT EFFECTS
+   ======================================== */
+
+.glow-text {
+    text-shadow:
+        0 0 10px rgba(139, 92, 246, 0.5),
+        0 0 20px rgba(236, 72, 153, 0.3);
+}
+
+.neon-text {
+    text-shadow:
+        0 0 5px currentColor,
+        0 0 10px currentColor,
+        0 0 20px currentColor,
+        0 0 40px currentColor;
+}
+
+/* ========================================
+   SCROLLBAR & MISC
+   ======================================== */
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+::selection {
+    background: rgba(139, 92, 246, 0.5);
+    color: white;
+}
+
+body.visualizer-active {
+    cursor: none;
+}
+
+body.visualizer-active #ui-overlay:hover {
+    cursor: default;
+}
+
+@media (max-width: 768px) {
+    #play-btn {
+        width: 4rem;
+        height: 4rem;
+    }
+}
